@@ -48,17 +48,17 @@ def check_for_win(b):
 	
 	returns x,o for a winner, - for a a tie, or none if no win
 	"""
-	# Horizontals
+	# Horizontals winning condition
 	if (b[0][0] == b[0][1] == b[0][2] != " "): return b[0][0]
 	if (b[1][0] == b[1][1] == b[1][2] != " "): return b[1][0]
 	if (b[2][0] == b[2][1] == b[2][2] != " "): return b[2][0]
 	
-	# Verticals
+	# Verticals winning condition
 	if (b[0][0] == b[1][0] == b[2][0] != " "): return b[0][0]
 	if (b[0][1] == b[1][1] == b[2][1] != " "): return b[0][1]
 	if (b[0][2] == b[1][2] == b[2][2] != " "): return b[0][2]
 	
-	# Diagonals
+	# Diagonals winning condition
 	if (b[0][0] == b[1][1] == b[2][2] != " "): return b[0][0]
 	if (b[0][2] == b[1][1] == b[2][0] != " "): return b[0][2]
 	
