@@ -38,7 +38,8 @@ def setup_players():
 			print e
 			continue
 		valid_setup = True
-		
+
+#method for checking winner
 def check_for_win(b):
 	"""
 	check_for_win
@@ -70,6 +71,7 @@ def check_for_win(b):
 	# Catch All for tie
 	return "-"
 	
+#calculating blank spaces in board
 def get_open_spaces(board):
 	spaces = []
 	for i in range(0, len(board)):
@@ -78,6 +80,7 @@ def get_open_spaces(board):
 				spaces.append([i,j])
 	return spaces
 		
+#method for computer to think about moves
 def find_best_move(b, player):
 	spaces = get_open_spaces(b)
 	move = []
@@ -104,6 +107,7 @@ def imminent_win(b, player):
 		b[space[0]][space[1]] = " "
 	return move
 			
+#evaluating move score
 def get_move_score(row, col, b, curr_player, eval_player, move_count):
 	orig = b[row][col]
 	b[row][col] = curr_player
@@ -123,11 +127,12 @@ def get_move_score(row, col, b, curr_player, eval_player, move_count):
 			score += get_move_score(space[0], space[1], list(b[:]) ,curr_player, eval_player, move_count + 1)
 	b[row][col] = orig
 	return score
-	
+
+#updating move in the board
 def move(row, col, p, b):
 	b[row][col] = p
 	
-	
+#taking input from human player	
 def request_move(b):
 	row = None
 	col = None
@@ -150,6 +155,7 @@ def request_move(b):
 			print "Invalid move!"
 	return (row, col)
 	
+#drawing initial tictactoe board
 def print_board(b):
 	print " ", " ", "1", " ", "2", " ", "3"
 	print " ", "-" * 13
@@ -159,12 +165,15 @@ def print_board(b):
 	print " ", "-" * 13
 	print "3 |", b[2][0], "|", b[2][1], "|", b[2][2], "|"
 	print " ","-" * 13
-	
+
+#method to switch player
 def switch_player(p):
 	if (p == "x"): return "o"
 	else: return "x"
 
+#after taking input changing in board
 setup_players()
+#while loop till winner is true
 while not winner:
 	print_board(board)
 	if (player in computer_players):
@@ -173,7 +182,9 @@ while not winner:
 	else:
 		p_move = request_move(board)
 	move(p_move[0], p_move[1], player, board)
+	#checking for winner
 	winner = check_for_win(board)
+	#switching player for next move
 	player = switch_player(player)
 
 
